@@ -24,15 +24,15 @@ Esto se explica en los vídeos:
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        entityManagerFactoryRef = "bd_EntityManagerFactory",
-        transactionManagerRef = "bd_TransactionManager",
+        entityManagerFactoryRef = "PostgreSQL_EntityManagerFactory",
+        transactionManagerRef = "PostgreSQL_TransactionManager",
         basePackages = {"com.gestpacientes.app.repository.postgresql"} //El path donde se encuentra el repositorio
 )
 public class PostgreSQLDB {
     @Autowired
     private Environment environment;
 
-    @Bean(name = "DataSource_Usuario")
+    @Bean(name = "PostgreSQL_DataSource")
     public DataSource DataSource_Usuario() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setUrl(environment.getProperty("postgres.datasource.url"));
@@ -43,7 +43,7 @@ public class PostgreSQLDB {
         return dataSource;
     }
 
-    @Bean(name = "bd_EntityManagerFactory")
+    @Bean(name = "PostgreSQL_EntityManagerFactory")
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(DataSource_Usuario());
@@ -62,7 +62,7 @@ public class PostgreSQLDB {
         return em;
     }
 
-    @Bean(name = "bd_TransactionManager")
+    @Bean(name = "PostgreSQL_TransactionManager")
     public PlatformTransactionManager transactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactoryBean().getObject());

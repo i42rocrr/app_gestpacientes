@@ -24,15 +24,15 @@ Esto se explica en los vídeos:
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        entityManagerFactoryRef = "bd_EntityManagerFactory",
-        transactionManagerRef = "bd_TransactionManager",
+        entityManagerFactoryRef = "MySQL_EntityManagerFactory",
+        transactionManagerRef = "MySQL_TransactionManager",
         basePackages = {"com.gestpacientes.app.repository.mysql"} //El path donde se encuentra el repositorio
 )
 public class MySQLDB {
     @Autowired
     private Environment environment;
 
-    @Bean(name = "DataSource_Usuario")
+    @Bean(name = "MySQL_DataSource")
     public DataSource DataSource_Usuario() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setUrl(environment.getProperty("mysql.datasource.url"));
@@ -43,7 +43,7 @@ public class MySQLDB {
         return dataSource;
     }
 
-    @Bean(name = "bd_EntityManagerFactory")
+    @Bean(name = "MySQL_EntityManagerFactory")
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(DataSource_Usuario());
@@ -62,7 +62,7 @@ public class MySQLDB {
         return em;
     }
 
-    @Bean(name = "bd_TransactionManager")
+    @Bean(name = "MySQL_TransactionManager")
     public PlatformTransactionManager transactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactoryBean().getObject());

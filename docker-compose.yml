@@ -11,29 +11,15 @@ services:
       - BD_MySQL=jdbc:mysql://conexionMySQL_service/pacientesdb
       - USUARIO_MySQL=root
       - PASSWORD_MySQL=secreta
-      - BD_PostgreSQL=jdbc:postgresql://conexionPostgreSQL_service/laboratoriosdb
-      - USUARIO_PostgreSQL=i42rocrr
-      - PASSWORD_PostgreSQL=Oca.14005
     depends_on:
       - conexionMySQL_service
-      - conexionPostgreSQL_service
   conexionMySQL_service:
     image: mysql
     container_name: mysql_cont
     ports:
-      - 3308:3306
+      - 3307:3306
     environment:
       - MYSQL_ROOT_PASSWORD=secreta
-      - MYSQL_DATABASE=localhost/pacientesdb:3308
+      - MYSQL_DATABASE=localhost/pacientesdb:3307
     volumes:
       - ../../Recursos/Volumenes/Vol_MySQL:/var/lib/mysql
-  conexionPostgreSQL_service:
-    image: postgres
-    container_name: postgresql_cont
-    ports:
-      - 5433:5432
-    environment:
-      - POSTGRESQL_PASSWORD=secreta
-      - POSTGRESQL_DATABASE=localhost/laboratoriosdb:5433
-    volumes:
-      - ../../Recursos/Volumenes/Vol_PostgreSQL:/var/lib/pgsql/data
