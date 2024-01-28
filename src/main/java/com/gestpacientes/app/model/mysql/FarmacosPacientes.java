@@ -1,6 +1,5 @@
 package com.gestpacientes.app.model.mysql;
 
-import com.gestpacientes.app.model.mysql.Pacientes;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,6 +12,30 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FarmacosPacientes {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public List<Pacientes> getPacientesList() {
+        return pacientesList;
+    }
+
+    public void setPacientesList(List<Pacientes> pacientesList) {
+        this.pacientesList = pacientesList;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column

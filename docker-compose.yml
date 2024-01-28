@@ -7,6 +7,9 @@ services:
       context: .
     ports:
       - '8081:8080'
+    networks:
+      TFG_network:
+        ipv4_address: 192.168.0.5
     environment:
       - BD_MySQL=jdbc:mysql://conexionMySQL_service/pacientesdb
       - USUARIO_MySQL=root
@@ -23,3 +26,14 @@ services:
       - MYSQL_DATABASE=localhost/pacientesdb:3307
     volumes:
       - ../../Recursos/Volumenes/Vol_MySQL:/var/lib/mysql
+    networks:
+      TFG_network:
+        ipv4_address: 192.168.0.4
+networks:
+  TFG_network:
+    name: TFG_net
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.0.0/24
+          gateway: 192.168.0.1
