@@ -12,30 +12,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FarmacosPacientes {
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public List<Pacientes> getPacientesList() {
-        return pacientesList;
-    }
-
-    public void setPacientesList(List<Pacientes> pacientesList) {
-        this.pacientesList = pacientesList;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
@@ -44,7 +20,8 @@ public class FarmacosPacientes {
     @Column
     private String nombre;
 
-    @ManyToMany (fetch = FetchType.LAZY)
+    //@ManyToMany (fetch = FetchType.LAZY)
+    @ManyToMany (fetch = FetchType.EAGER)
     @JoinTable(
             name = "FarmacosPacientes_Lista",
             joinColumns = @JoinColumn(name = "farmaco_id"),

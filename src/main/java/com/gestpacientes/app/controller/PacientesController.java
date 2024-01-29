@@ -88,6 +88,7 @@ public class PacientesController {
     }
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+
     @GetMapping("/pacientes/listartodos")
     public String listarPacientes(Model model){
         List<Pacientes> pacientesList = pacientesService.listarTodos();

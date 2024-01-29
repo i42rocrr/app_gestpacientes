@@ -21,7 +21,8 @@ public class FarmacosLaboratorios {
     @Column
     private String nombre;
 
-    @ManyToMany (fetch = FetchType.LAZY)
+    //@ManyToMany (fetch = FetchType.LAZY)
+    @ManyToMany (fetch = FetchType.EAGER)
     @JoinTable(
             name = "FarmacosLaboratorios_Lista",
             joinColumns = @JoinColumn(name = "farmaco_id"),
@@ -29,27 +30,4 @@ public class FarmacosLaboratorios {
     )
     private List<Laboratorios> laboratoriosList;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public List<Laboratorios> getLaboratoriosList() {
-        return laboratoriosList;
-    }
-
-    public void setLaboratoriosList(List<Laboratorios> laboratoriosList) {
-        this.laboratoriosList = laboratoriosList;
-    }
 }
