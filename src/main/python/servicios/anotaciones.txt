@@ -1,0 +1,13 @@
+Instalar:
+ Pyarrow
+ ucimlrepo
+
+https://panamahitek.com/importar-archivos-csv-en-python/?utm_content=cmp-true
+https://openwebinars.net/blog/como-entrenar-un-modelo-de-machine-learning-con-scikit-learn/
+Valores: https://www.freecodecamp.org/espanol/news/limpieza-de-datos-en-pandas-explicado-con-ejemplos/
+
+Árboles de decisión para predecir: https://www.aprendemachinelearning.com/arbol-de-decision-en-python-clasificacion-y-prediccion/
+
+cheque: 50€
+nºExp: 452131638
+Tfno carglass: 957405295

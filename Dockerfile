@@ -81,6 +81,7 @@ RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/pip install numpy
 RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/pip install pyarrow
 RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/pip install pandas
 RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/pip install matplotlib
+RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/pip install Pyarrow
 RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/pip install scipy
 RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/pip install scikit-learn
 RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/pip install ucimlrepo

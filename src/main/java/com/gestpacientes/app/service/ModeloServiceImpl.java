@@ -30,9 +30,9 @@ public class ModeloServiceImpl implements ModeloService {
     public void borrarModelos(Modelo modelo){modelosRepository.delete(modelo);}
 
     @Override
-    public void EjecutaPython(){
+    public void EjecutaPython(String nombreFicheroPython){
         try {
-            String ficheroPython = new File("/src/main/python/servicios/HazPrediccion.py")
+            String ficheroPython = new File("/src/main/python/servicios/"+nombreFicheroPython)
                     .getPath()
                     .toString();
 
@@ -44,6 +44,7 @@ public class ModeloServiceImpl implements ModeloService {
 
         } catch (IOException | InterruptedException e) {
             System.out.println("Vaya! Algo salió mal en ModeloServiceImpl.EjecutaPython()......................");
+            System.out.println(e.getMessage());
         }
     }
 }

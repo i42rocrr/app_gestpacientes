@@ -15,6 +15,6 @@ public interface ModeloService {
 
     public void borrarModelos(Modelo modelo);
 
-    public void EjecutaPython();
+    public void EjecutaPython(String nombreFicheroPython);
 
 }
