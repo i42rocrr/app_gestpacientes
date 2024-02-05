@@ -1,6 +1,6 @@
-package com.gestpacientes.app.repository.mysql;
+package com.gestpacientes.app.repository;
 
-import com.gestpacientes.app.model.mysql.FarmacosPacientes;
+import com.gestpacientes.app.model.FarmacosPacientes;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 @Repository

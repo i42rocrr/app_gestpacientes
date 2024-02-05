@@ -1,6 +1,6 @@
 package com.gestpacientes.app.service;
 
-import com.gestpacientes.app.model.mysql.Modelo;
+import com.gestpacientes.app.model.Modelo;
 
 import java.util.List;
 import java.util.Optional;

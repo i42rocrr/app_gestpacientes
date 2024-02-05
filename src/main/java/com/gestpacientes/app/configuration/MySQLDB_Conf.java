@@ -24,15 +24,15 @@ Esto se explica en los vídeos:
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        entityManagerFactoryRef = "MySQL_EntityManagerFactory",
-        transactionManagerRef = "MySQL_TransactionManager",
-        basePackages = {"com.gestpacientes.app.repository.mysql"} //El path donde se encuentra el repositorio
+        entityManagerFactoryRef = "EntityManagerFactory_MySQL",
+        transactionManagerRef = "TransactionManager_MySQL",
+        basePackages = {"com.gestpacientes.app.repository"} //El path donde se encuentra el repositorio
 )
-public class MySQLDB {
+public class MySQLDB_Conf {
     @Autowired
     private Environment environment;
 
-    @Bean(name = "MySQL_DataSource")
+    @Bean(name = "DataSource_MySQL")
     public DataSource DataSource_Usuario() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setUrl(environment.getProperty("mysql.datasource.url"));
@@ -43,11 +43,11 @@ public class MySQLDB {
         return dataSource;
     }
 
-    @Bean(name = "MySQL_EntityManagerFactory")
+    @Bean(name = "EntityManagerFactory_MySQL")
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(DataSource_Usuario());
-        em.setPackagesToScan("com.gestpacientes.app.model.mysql");
+        em.setPackagesToScan("com.gestpacientes.app.model");
 
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
@@ -62,7 +62,7 @@ public class MySQLDB {
         return em;
     }
 
-    @Bean(name = "MySQL_TransactionManager")
+    @Bean(name = "TransactionManager_MySQL")
     public PlatformTransactionManager transactionManager() {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactoryBean().getObject());

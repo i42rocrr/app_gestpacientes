@@ -1,6 +1,5 @@
-package com.gestpacientes.app.model.postgresql;
+package com.gestpacientes.app.model;
 
-import com.gestpacientes.app.model.postgresql.Laboratorios;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,7 +11,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class FarmacosLaboratorios {
+public class FarmacosPacientes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
@@ -24,10 +23,10 @@ public class FarmacosLaboratorios {
     //@ManyToMany (fetch = FetchType.LAZY)
     @ManyToMany (fetch = FetchType.EAGER)
     @JoinTable(
-            name = "FarmacosLaboratorios_Lista",
+            name = "FarmacosPacientes_Lista",
             joinColumns = @JoinColumn(name = "farmaco_id"),
-            inverseJoinColumns = @JoinColumn(name="laboratorio_id")
+            inverseJoinColumns = @JoinColumn(name="paciente_id")
     )
-    private List<Laboratorios> laboratoriosList;
+    private List<Pacientes> pacientesList;
 
 }

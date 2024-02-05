@@ -1,6 +1,6 @@
 package com.gestpacientes.app.controller;
 
-import com.gestpacientes.app.model.mysql.Modelo;
+import com.gestpacientes.app.model.Modelo;
 import com.gestpacientes.app.service.ModeloService;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
@@ -90,6 +90,7 @@ public class ModeloController {
 
 
 
-        return "redirect:/OpcionesPacientes";
+        //return "redirect:/";
+        return "ResultadoPrediccion";
     }
 }

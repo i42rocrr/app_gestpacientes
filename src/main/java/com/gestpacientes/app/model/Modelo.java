@@ -1,4 +1,4 @@
-package com.gestpacientes.app.model.mysql;
+package com.gestpacientes.app.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

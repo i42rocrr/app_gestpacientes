@@ -1,8 +1,8 @@
 package com.gestpacientes.app.service;
 
-import com.gestpacientes.app.model.mysql.FarmacosPacientes;
-import com.gestpacientes.app.model.mysql.Pacientes;
-import com.gestpacientes.app.repository.mysql.FarmacosPacientesRepository;
+import com.gestpacientes.app.model.FarmacosPacientes;
+import com.gestpacientes.app.model.Pacientes;
+import com.gestpacientes.app.repository.FarmacosPacientesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

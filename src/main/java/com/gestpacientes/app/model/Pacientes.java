@@ -1,4 +1,4 @@
-package com.gestpacientes.app.model.postgresql;
+package com.gestpacientes.app.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -8,11 +8,12 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 
+
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Laboratorios {
+public class Pacientes {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
@@ -24,7 +25,7 @@ public class Laboratorios {
     @Column
     private String email;
 
-    @ManyToMany (mappedBy = "laboratoriosList", fetch = FetchType.EAGER)
-    private List<FarmacosLaboratorios> farmacosLaboratoriosList;
+    @ManyToMany (mappedBy = "pacientesList", fetch = FetchType.EAGER)
+    private List<FarmacosPacientes> farmacosPacientesList;
 
 }
