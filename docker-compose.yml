@@ -1,38 +1,20 @@
 version: "4.25.2"
 services:
   app_service:
-    container_name: app_gestpacientes_cont
-    image: gestpacientes_img:1.0.0
+    container_name: app_gestinterna_cont
+    image: gestinterna_img:1.0.0
     build:
       context: .
     ports:
-      - '8081:8080'
+      - '8083:8080'
     networks:
       TFG_network:
-        ipv4_address: 192.168.0.5
-    environment:
-      - BD_MySQL=jdbc:mysql://conexionMySQL_service/pacientesdb
-      - USUARIO_MySQL=root
-      - PASSWORD_MySQL=secreta
-    depends_on:
-      - conexionMySQL_service
-  conexionMySQL_service:
-    image: mysql
-    container_name: mysql_cont
-    ports:
-      - 3307:3306
-    environment:
-      - MYSQL_ROOT_PASSWORD=secreta
-      - MYSQL_DATABASE=localhost/pacientesdb:3307
-    volumes:
-      - ../../Recursos/Volumenes/Vol_MySQL:/var/lib/mysql
-    networks:
-      TFG_network:
-        ipv4_address: 192.168.0.4
+        ipv4_address: 192.168.0.6
 networks:
   TFG_network:
     name: TFG_net
     driver: bridge
+    external: true
     ipam:
       config:
         - subnet: 192.168.0.0/24

@@ -8,7 +8,8 @@ def HazListaPython():
     #print (sys.path)
     #print ("Salida del dir(np)......................................")
     #print (dir(np))
-    a=np.array[1,2,3]
-    print ("Salida del array.................................................")
-    print (a)
-    return "Ejecución de python correcta."
+    #a=np.array[1,2,3]
+    #print ("Salida del array.................................................")
+    #print (a)
+    print("Ejecutado desde python perfectamente.............")
+    return ("Ejecución de python correcta.")
