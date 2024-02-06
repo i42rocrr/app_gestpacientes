@@ -93,6 +93,11 @@ RUN  /graalenv/bin/graalpy -m pip install wheel
 RUN  /graalenv/bin/graalpy -m pip install setuptools
 RUN  /graalenv/bin/graalpy -m pip install psutil
 RUN  /graalenv/bin/graalpy -m pip install numpy
+#RUN  /graalenv/bin/graalpy -m pip install cython
+#RUN  /graalenv/bin/graalpy -m pip install python-dateutil
+#RUN  /graalenv/bin/graalpy -m pip install pytz
+#RUN  /graalenv/bin/graalpy -m pip install tzdata
+#RUN  /graalenv/bin/graalpy -m pip install pandas
 
 #RUN  /graalenv/bin/graalpy -m pip install ninja
 #RUN  /graalenv/bin/graalpy -m pip install pybind11
