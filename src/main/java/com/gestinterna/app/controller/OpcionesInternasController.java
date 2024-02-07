@@ -1,40 +1,55 @@
 package com.gestinterna.app.controller;
 
-import com.gestinterna.app.model.postgresql.Laboratorios;
-import com.gestinterna.app.pythonConf.listado_LaboratorioPacientes;
-import com.gestinterna.app.repository.mysql.PacientesRepository;
-import com.gestinterna.app.repository.postgresql.LaboratoriosRepository;
+import com.gestinterna.app.model.mysql.Pacientes;
+import com.gestinterna.app.resultados.LaboratorioPacientes;
+import com.gestinterna.app.resultados.ResultadosPy;
+import com.gestinterna.app.service.mysql.PacientesService;
+import com.gestinterna.app.service.postgresql.LaboratoriosService;
+import com.gestinterna.app.service.postgresql.LaboratoriosServiceImpl;
+import org.graalvm.polyglot.Context;
+import org.graalvm.polyglot.Source;
+
+import org.graalvm.polyglot.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.ui.Model;
 
-import java.io.File;
-import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+
 
 @Controller
 public class OpcionesInternasController {
 
-    listado_LaboratorioPacientes listado_laboratorioPacientes;
+    @Autowired
+    private PacientesService pacientesService;
 
     @Autowired
-    private LaboratoriosRepository laboratoriosRepository;
+    private LaboratoriosService laboratoriosService;
 
-    @Autowired
-    private PacientesRepository pacientesRepository;
+    ResultadosPy resultadosPy;
+
+    OpcionesInternasController (ResultadosPy resultadosPy_) {
+        this.resultadosPy = resultadosPy_;
+    }
 
     @GetMapping("/CrearListadoLaboratoriosPacientes")
     public String CrearListadosLaboratoriosPacientes(Model model) {
+        List<Pacientes> pacientes = resultadosPy.buscaPacientes(laboratoriosService.listarTodos().getFirst(), pacientesService.listarTodos());
 
+        /*
+        List<LaboratorioPacientes> laboratorioPacientesList = new ArrayList<>();
+        for(int i=0; i<laboratoriosService.listarTodos().size();i++) {
+            LaboratorioPacientes laboratorioPacientes = new LaboratorioPacientes();
 
-        List<Laboratorios> laboratoriosList = laboratoriosRepository.findAll();
-        for (int i=0; i<laboratoriosList.size();i++) {
-
-            listado_laboratorioPacientes.buscaPacientes(laboratoriosList.get(i), pacientesRepository.findAll());
+            laboratorioPacientes.setLaboratorio(laboratoriosService.listarTodos().get(i));
+            laboratorioPacientes.setListaPacientes(
+                    resultadosPy.buscaPacientes(laboratoriosService.listarTodos().get(i), pacientesService.listarTodos())
+            );
+            laboratorioPacientesList.add(laboratorioPacientes);
         }
-
-
+        */
         return "ListadoLaboratoriosPacientes";
     }
 }

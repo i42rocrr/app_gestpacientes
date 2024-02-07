@@ -26,7 +26,7 @@ Esto se explica en los vídeos:
 @EnableJpaRepositories(
         entityManagerFactoryRef = "MySQL_EntityManagerFactory",
         transactionManagerRef = "MySQL_TransactionManager",
-        basePackages = {"com.gestpacientes.app.repository.mysql"} //El path donde se encuentra el repositorio
+        basePackages = {"com.gestinterna.app.repository.mysql"} //El path donde se encuentra el repositorio
 )
 public class MySQLDB {
     @Autowired
@@ -47,7 +47,7 @@ public class MySQLDB {
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(DataSource_Usuario());
-        em.setPackagesToScan("com.gestpacientes.app.model.mysql");
+        em.setPackagesToScan("com.gestinterna.app.model.mysql");
 
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);

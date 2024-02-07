@@ -26,7 +26,7 @@ Esto se explica en los vídeos:
 @EnableJpaRepositories(
         entityManagerFactoryRef = "PostgreSQL_EntityManagerFactory",
         transactionManagerRef = "PostgreSQL_TransactionManager",
-        basePackages = {"com.gestpacientes.app.repository.postgresql"} //El path donde se encuentra el repositorio
+        basePackages = {"com.gestinterna.app.repository.postgresql"} //El path donde se encuentra el repositorio
 )
 public class PostgreSQLDB {
     @Autowired
@@ -47,7 +47,7 @@ public class PostgreSQLDB {
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(DataSource_Usuario());
-        em.setPackagesToScan("com.gestpacientes.app.model.postgresql");
+        em.setPackagesToScan("com.gestinterna.app.model.postgresql");
 
         HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);

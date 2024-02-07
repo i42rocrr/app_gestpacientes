@@ -1,5 +1,6 @@
 package com.gestinterna.app.model.mysql;
 
+import com.gestinterna.app.model.mysql.Pacientes;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
