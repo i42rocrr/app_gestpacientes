@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang=”en” xmlns:th=”http://www.thymeleaf.org”>
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de encuesta</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous">
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous">
+</script>
+
+<div class="bg-success p-2 text-white bg-opacity-75">
+    <h1> Recopilación de datos médicos</h1>
+</div>
+
+<div class="container text-center">
+    <h1>Datos médicos</h1>
+
+    <form th:action="@{/pacientes/modelo/guardar}" th:object="${encuesta}" method="post" style="max-width:600px;margin:0 auto;">
+        <div>
+            <table class="table table-bordered">
+                <tr>
+                    <td class="table-primary">
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <select id="RangoEdadSelect" th:field="*{rangoEdad}" class="form-select" aria-label="Default select example">
+                                        <option value="10-19" selected>10 - 19</option>
+                                        <option value="20-29">20 - 29</option>
+                                        <option value="30-39">30 - 39</option>
+                                        <option value="40-49">40 - 49</option>
+                                        <option value="50-59">50 - 59</option>
+                                        <option value="60-69">60 - 69</option>
+                                        <option value="70-79">70 - 79</option>
+                                        <option value="80-89">80 - 89</option>
+                                        <option value="90-99">90 - 99</option>
+                                    </select>
+                                    <label for="RangoEdadSelect">Rango de edad:</label>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+
+                    <td class="table-primary">
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <select id="MenopausiaSelect" th:field="*{menopausia}" class="form-select" aria-label="Default select example">
+                                        <option value="lt40" selected>lt40</option>
+                                        <option value="ge40">ge40</option>
+                                        <option value="premeno">Premeno</option>
+                                    </select>
+                                    <label for="MenopausiaSelect">Menopausia:</label>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="table-primary">
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <select id="TamanoTumorSelect" th:field="*{tamanoTumor}" class="form-select" aria-label="Default select example">
+                                        <option value="0-4" selected>0 - 4</option>
+                                        <option value="5-9">5 - 9</option>
+                                        <option value="10-14">10 - 14</option>
+                                        <option value="15-19">15 - 19</option>
+                                        <option value="20-24">20 - 24</option>
+                                        <option value="25-29">25 - 29</option>
+                                        <option value="30-34">30 - 34</option>
+                                        <option value="35-39">35 - 39</option>
+                                        <option value="40-44">40 - 44</option>
+                                        <option value="45-49">45 - 49</option>
+                                        <option value="50-54">50 - 54</option>
+                                        <option value="55-59">55 - 59</option>
+                                    </select>
+                                    <label for="TamanoTumorSelect">Tamaño del tumor:</label>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="table-primary">
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <select id="NumGangliosSelect" th:field="*{numGanglios}" class="form-select" aria-label="Default select example">
+                                        <option value="0-2" selected>0 - 2</option>
+                                        <option value="3-5">3 - 5</option>
+                                        <option value="6-8">6 - 8</option>
+                                        <option value="9-11">9 - 11</option>
+                                        <option value="12-14">12 - 14</option>
+                                        <option value="15-17">15 - 17</option>
+                                        <option value="18-20">18 - 20</option>
+                                        <option value="21-23">21 - 23</option>
+                                        <option value="24-26">24 - 26</option>
+                                        <option value="27-29">27 - 29</option>
+                                        <option value="30-32">30 - 32</option>
+                                        <option value="33-35">33 - 35</option>
+                                        <option value="36-39">36 - 39</option>
+                                    </select>
+                                    <label for="NumGangliosSelect">Número de gánglios:</label>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="table-primary">
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <select id="NodeCapsSelect" th:field="*{nodeCaps}" class="form-select" aria-label="Default select example">
+                                        <option value="no" selected>No</option>
+                                        <option value="yes">Sí</option>
+                                    </select>
+                                    <label for="NodeCapsSelect">¿Había cápsulas ganglionares?:</label>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="table-primary">
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <select id="GradoMalignidadSelect" th:field="*{gradoMalignidad}" class="form-select" aria-label="Default select example">
+                                        <option value="1" selected>1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                    </select>
+                                    <label for="GradoMalignidadSelect">Grado de malignidad:</label>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+
+
+                <tr>
+                    <td class="table-primary">
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <select id="MamaSelect" th:field="*{mama}" class="form-select" aria-label="Default select example">
+                                        <option value="left" selected>Izquierda</option>
+                                        <option value="right">Derecha</option>
+                                    </select>
+                                    <label for="MamaSelect">Mama afectada:</label>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="table-primary">
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <select id="CuadranteMamarioSelect" th:field="*{cuadranteMamario}" class="form-select" aria-label="Default select example">
+                                        <option value="left_up" selected>Izquierda-Arriba</option>
+                                        <option value="left_low">Izquierda-Abajo</option>
+                                        <option value="right_up">Derecha-Arriba</option>
+                                        <option value="right_low">Derecha-Abajo</option>
+                                        <option value="central">Centro</option>
+                                    </select>
+                                    <label for="CuadranteMamarioSelect">Cuadrante mamario afectado:</label>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="table-primary">
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <select id="RadiacionSelect" th:field="*{radiacion}" class="form-select" aria-label="Default select example">
+                                        <option value="yes" selected>Sí</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                    <label for="RadiacionSelect">¿Se trató con radioterapia?:</label>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="table-primary">
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <div class="form-floating">
+
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+
+
+            </table>
+        </div>
+
+
+
+        <div class="text-center p">
+            <button type="submit" class="btn btn-primary">Predice</button>
+            <a href="/" class="btn btn-primary enabled" tabindex="-1" role="button" aria-disabled="false">Volver</a>
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>

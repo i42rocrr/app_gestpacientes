@@ -62,48 +62,31 @@ ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
 ############ Fin Instalación de maven
 
 
-######Instalación de GraalPy
-ARG GRAALPY_VERSION=23.1.2
-ARG GRAALPY_PKG=https://github.com/oracle/graalpython/releases/download/graal-${GRAALPY_VERSION}/graalpy-${GRAALPY_VERSION}-linux-amd64.tar.gz
-#ARG GRAALPY_PKG=https://github.com/oracle/graalpython/releases/download/graal-${GRAALPY_VERSION}/graalpy-community-${GRAALPY_VERSION}-linux-amd64.tar.gz
-#ARG GRAALPY_PKG=https://github.com/oracle/graalpython/releases/download/graal-${GRAALPY_VERSION}/graalpy-community-jvm-${GRAALPY_VERSION}-linux-amd64.tar.gz
-ARG TEMP_REGION=""
+#############Instalación de Pyenv y Python
+ARG PYTHONVERSION=3.12.1
+RUN curl https://pyenv.run | bash
+ENV PATH=/root/.pyenv/bin:$PATH
+RUN eval "$(pyenv init -)"
+RUN /root/.pyenv/bin/pyenv install -v ${PYTHONVERSION}
+ENV PATH=/root/.pyenv/versions/${PYTHONVERSION}/bin:$PATH
+RUN /root/.pyenv/bin/pyenv global ${PYTHONVERSION}
 
-RUN set -eux \
-    && mkdir -p /graalpy \
-    && curl --silent --location --retry 3 $GRAALPY_PKG | gunzip | tar x -C /graalpy --strip-components=1
-
-ENV LANG=es_ES.UTF-8 \
-    PATH=/graalpy/bin:$PATH
-#############Fin instalación de Graalpy
+RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/python -m pip install --upgrade pip
+#############Fin instalación de Pyenv y Python
 
 
-
-############## Creación de un entorno virtual de GraalPy##########
-RUN graalpy -m venv --system-site-packages --upgrade-deps /graalenv
-#RUN graalpy -m venv /graalenv
-#RUN /graalpy/bin/graalpy -m venv /graalenv
-RUN source /graalenv/bin/activate
-############## Fin creación de un entorno virtual de GraalPy############
-
-
-
-########### Instalación de paquetes de python en el entorno virtual de GraalPy
-RUN  /graalenv/bin/graalpy -m pip install wheel
-RUN  /graalenv/bin/graalpy -m pip install setuptools
-RUN  /graalenv/bin/graalpy -m pip install psutil
-RUN  /graalenv/bin/graalpy -m pip install numpy
-#RUN  /graalenv/bin/graalpy -m pip install cython
-#RUN  /graalenv/bin/graalpy -m pip install python-dateutil
-#RUN  /graalenv/bin/graalpy -m pip install pytz
-#RUN  /graalenv/bin/graalpy -m pip install tzdata
-#RUN  /graalenv/bin/graalpy -m pip install pandas
-
-#RUN  /graalenv/bin/graalpy -m pip install ninja
-#RUN  /graalenv/bin/graalpy -m pip install pybind11
-#RUN  /graalenv/bin/graalpy -m pip install pillow
-#RUN  /graalenv/bin/graalpy -m pip install kiwisolver
-######### Fin de instalación de paquetes de python en entorno virtual de GraalPy
+########### Instalación de paquetes de python en el systema
+RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/pip install wheel
+RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/pip install psutil
+RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/pip install numpy
+RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/pip install pyarrow
+RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/pip install pandas
+RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/pip install matplotlib
+RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/pip install Pyarrow
+RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/pip install scipy
+RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/pip install scikit-learn
+RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/pip install ucimlrepo
+########### Fin instalación de paquetes de python en el systema
 
 
 
