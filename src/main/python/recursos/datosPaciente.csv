@@ -1,2 +1,2 @@
 age,menopause,tumor-size,inv-nodes,node-caps,deg-malig,breast,breast-quad,irradiat
-50-59,ge40,25-29,6-8,no,3,left,left_low,yes
+10-19,lt40,0-4,0-2,no,1,left,left_up,yes
