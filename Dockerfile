@@ -1,4 +1,5 @@
-FROM quay.io/p\ypa/manylinux_2_28_x86_64
+FROM quay.io/pypa/manylinux_2_28_x86_64
+#FROM quay.io/p\ypa/manylinux_2_28_x86_64
 
 ############# Configuración del SOP
 RUN dnf -y install libffi-devel bzip2-devel ed gcc gcc-c++ gcc-gfortran
@@ -86,6 +87,7 @@ RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/pip install Pyarrow
 RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/pip install scipy
 RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/pip install scikit-learn
 RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/pip install ucimlrepo
+RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/pip install certifi
 ########### Fin instalación de paquetes de python en el systema
 
 

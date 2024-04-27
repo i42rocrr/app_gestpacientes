@@ -195,6 +195,12 @@ dataset = fetch_ucirepo(id=14) #Breast Cancer: dataset id=14
 dataFrameX_train = dataset.data.features #Datos
 dataFramey_train = dataset.data.targets #Clasificación
 
+
+print("dataFrameX_train")
+print(dataFrameX_train)
+print("dataFramey_train")
+print(dataFramey_train)
+
 X_train_ = pd.DataFrame(data=dataFrameX_train)
 X_train = preparaDatosX(X_train_)
 y_train_ = pd.DataFrame(data=dataFramey_train)
@@ -204,7 +210,6 @@ y_train = preparaDatosY(y_train_)
 #Carga de datos del formulario
 import os
 directorio_actual = os.path.dirname(os.path.realpath(__file__))
-#fichero_X_test = os.path.join(directorio_actual, "..\\recursos\\datosPaciente_X.csv")
 fichero_X_test = os.path.join(directorio_actual, "../recursos/datosPaciente_X.csv")
 dataFrameX_test = pd.read_csv(fichero_X_test) #Datos prueba
 
@@ -442,95 +447,95 @@ fResult.close()
 ###################### IMPRESIÓN DE RESULTADOS EN PANTALLA ############################
 
 ################## RESULTADOS_1.- Árbol de decisión
-print("###############   1.- ÁRBOL DE DECISIÓN   ###################")
+#print("###############   1.- ÁRBOL DE DECISIÓN   ###################")
 ## 1.1. Precisión del modelo
-print("1.1. Precisión del modelo")
-print("   -mean():.................................: " + str(mean_Arbol))
-print("   -std():..................................: " + str(std_Arbol))
-print("   -accuracy_score()).......................: " + str(accuracyScore_Arbol))
-print("   -Matriz de confusión.....................:")
-print(confusionMatrix_Arbol)
+#print("1.1. Precisión del modelo")
+#print("   -mean():.................................: " + str(mean_Arbol))
+#print("   -std():..................................: " + str(std_Arbol))
+#print("   -accuracy_score()).......................: " + str(accuracyScore_Arbol))
+#print("   -Matriz de confusión.....................:")
+#print(confusionMatrix_Arbol)
 
 ## 1.2. Predicción, probabilidad y precisión media de lo datos del formulario
-print("1.2. Predicción, probabilidad de acierto y precisión media de los datos del formulario")
-print("   -Valor de predicción.....................: " + str(y_pred_decision_tree))
-print("   -Probabilidad de Acierto.................: " + str(np.round(y_prob_decision_tree[0][y_pred_decision_tree]* 100, 2))+"%")
-print("   -Precisión media de las predicciones.....: " + str(decision_tree_Score))
+#print("1.2. Predicción, probabilidad de acierto y precisión media de los datos del formulario")
+#print("   -Valor de predicción.....................: " + str(y_pred_decision_tree))
+#print("   -Probabilidad de Acierto.................: " + str(np.round(y_prob_decision_tree[0][y_pred_decision_tree]* 100, 2))+"%")
+#print("   -Precisión media de las predicciones.....: " + str(decision_tree_Score))
 
-print("")
+#print("")
 
 
 ################## RESULTADOS_2.- REGRESIÓN LOGÍSTICA
-print("###############   2.- REGRESIÓN LOGÍSTICA   ###################")
+#print("###############   2.- REGRESIÓN LOGÍSTICA   ###################")
 ## 2.1. Precisión del modelo
-print("2.1. Precisión del modelo")
-print("   -mean():.................................: " + str(mean_LR))
-print("   -std():..................................: " + str(std_LR))
-print("   -accuracy_score()).......................: " + str(accuracyScore_RL))
-print("   -Matriz de confusión.....................:")
-print(confusionMatrix_RL)
+#print("2.1. Precisión del modelo")
+#print("   -mean():.................................: " + str(mean_LR))
+#print("   -std():..................................: " + str(std_LR))
+#print("   -accuracy_score()).......................: " + str(accuracyScore_RL))
+#print("   -Matriz de confusión.....................:")
+#print(confusionMatrix_RL)
 
 ## 2.2. Predicción, probabilidad y precisión media de lo datos del formulario
-print("2.2. Predicción, probabilidad de acierto y precisión media de los datos del formulario")
-print("   -Valor de predicción.....................: " + str(y_pred_LogRegr))
-print("   -Probabilidad de Acierto.................: " + str(np.round(y_prob_LogRegr[0][y_pred_LogRegr]* 100, 2))+"%")
-print("   -Precisión media de las predicciones.....: " + str(LR_Score))
+#print("2.2. Predicción, probabilidad de acierto y precisión media de los datos del formulario")
+#print("   -Valor de predicción.....................: " + str(y_pred_LogRegr))
+#print("   -Probabilidad de Acierto.................: " + str(np.round(y_prob_LogRegr[0][y_pred_LogRegr]* 100, 2))+"%")
+#print("   -Precisión media de las predicciones.....: " + str(LR_Score))
 
-print("")
+#print("")
 
 
 ################## RESULTADOS_3.- K-Nearest Neighbours
-print("###############   3.- K-Nearest Neighbours   ###################")
+#print("###############   3.- K-Nearest Neighbours   ###################")
 ## 3.1. Precisión del modelo
-print("3.1. Precisión del modelo")
-print("   -mean():.................................: " + str(mean_KN))
-print("   -std():..................................: " + str(std_KN))
-print("   -accuracy_score()).......................: " + str(accuracyScore_KN))
-print("   -Matriz de confusión.....................:")
-print(confusionMatrix_KN)
+#print("3.1. Precisión del modelo")
+#print("   -mean():.................................: " + str(mean_KN))
+#print("   -std():..................................: " + str(std_KN))
+#print("   -accuracy_score()).......................: " + str(accuracyScore_KN))
+#print("   -Matriz de confusión.....................:")
+#print(confusionMatrix_KN)
 
 ## 3.2. Predicción, probabilidad y precisión media de lo datos del formulario
-print("3.2. Predicción, probabilidad de acierto y precisión media de los datos del formulario")
-print("   -Valor de predicción.....................: " + str(y_pred_KN))
-print("   -Probabilidad de Acierto.................: " + str(np.round(y_prob_KN[0][y_pred_KN]* 100, 2))+"%")
-print("   -Precisión media de las predicciones.....: " + str(KN_Score))
+#print("3.2. Predicción, probabilidad de acierto y precisión media de los datos del formulario")
+#print("   -Valor de predicción.....................: " + str(y_pred_KN))
+#print("   -Probabilidad de Acierto.................: " + str(np.round(y_prob_KN[0][y_pred_KN]* 100, 2))+"%")
+#print("   -Precisión media de las predicciones.....: " + str(KN_Score))
 
-print("")
+#print("")
 
 
 
 
 ################## RESULTADOS_4.- Gaussian Naïve Bayes Algorithm
-print("###############   4.- Gaussian Naïve Bayes Algorithm   ###################")
+#print("###############   4.- Gaussian Naïve Bayes Algorithm   ###################")
 ## 4.1. Precisión del modelo
-print("4.1. Precisión del modelo")
-print("   -mean():.................................: " + str(mean_Gaussian))
-print("   -std():..................................: " + str(std_Gaussian))
-print("   -accuracy_score()).......................: " + str(accuracyScore_Gaussian))
-print("   -Matriz de confusión.....................:")
-print(confusionMatrix_Gaussian)
+#print("4.1. Precisión del modelo")
+#print("   -mean():.................................: " + str(mean_Gaussian))
+#print("   -std():..................................: " + str(std_Gaussian))
+#print("   -accuracy_score()).......................: " + str(accuracyScore_Gaussian))
+#print("   -Matriz de confusión.....................:")
+#print(confusionMatrix_Gaussian)
 
 ## 4.2. Predicción, probabilidad y precisión media de lo datos del formulario
-print("4.2. Predicción, probabilidad de acierto y precisión media de los datos del formulario")
-print("   -Valor de predicción.....................: " + str(y_pred_Gaussian))
-print("   -Probabilidad de Acierto.................: " + str(np.round(y_prob_Gaussian[0][y_pred_Gaussian]* 100, 2))+"%")
-print("   -Precisión media de las predicciones.....: " + str(Gaussian_Score))
+#print("4.2. Predicción, probabilidad de acierto y precisión media de los datos del formulario")
+#print("   -Valor de predicción.....................: " + str(y_pred_Gaussian))
+#print("   -Probabilidad de Acierto.................: " + str(np.round(y_prob_Gaussian[0][y_pred_Gaussian]* 100, 2))+"%")
+#print("   -Precisión media de las predicciones.....: " + str(Gaussian_Score))
 
-print("")
+#print("")
 
 
 ################## RESULTADOS_5.- Random Forest Algorithm
-print("###############   5.- Random Forest Algorithm   ###################")
+#print("###############   5.- Random Forest Algorithm   ###################")
 ## 5.1. Precisión del modelo
-print("5.1. Precisión del modelo")
-print("   -mean():.................................: " + str(mean_RF))
-print("   -std():..................................: " + str(std_RF))
-print("   -accuracy_score()).......................: " + str(accuracyScore_RF))
-print("   -Matriz de confusión.....................:")
-print(confusionMatrix_RF)
+#print("5.1. Precisión del modelo")
+#print("   -mean():.................................: " + str(mean_RF))
+#print("   -std():..................................: " + str(std_RF))
+#print("   -accuracy_score()).......................: " + str(accuracyScore_RF))
+#print("   -Matriz de confusión.....................:")
+#print(confusionMatrix_RF)
 
 ## 5.2. Predicción, probabilidad y precisión media de lo datos del formulario
-print("5.2. Predicción, probabilidad de acierto y precisión media de los datos del formulario")
-print("   -Valor de predicción.....................: " + str(y_pred_RF))
-print("   -Probabilidad de Acierto.................: " + str(np.round(y_prob_RF[0][y_pred_RF]* 100, 2))+"%")
-print("   -Precisión media de las predicciones.....: " + str(RF_Score))
+#print("5.2. Predicción, probabilidad de acierto y precisión media de los datos del formulario")
+#print("   -Valor de predicción.....................: " + str(y_pred_RF))
+#print("   -Probabilidad de Acierto.................: " + str(np.round(y_prob_RF[0][y_pred_RF]* 100, 2))+"%")
+#print("   -Precisión media de las predicciones.....: " + str(RF_Score))
