@@ -46,9 +46,9 @@ public class ModeloController {
             // "Breast Cancer" (repositorio "ucirepo"), que almacenará en el fichero "datosPaciente_X.csv". Una vez
             // creados y entrenados los modelos mencionados, tomará los datos de este formulario, que se han
             // almacenado en el fichero "datosPaciente.csv" y hará la predicción correspondiente. El resultado de esa
-            // predicción la almacena en el fichero "resultados.txt". Este service, a través de esta función ""predecir"
+            // predicción la almacena en el fichero "resultados.txt". Este service, a través de esta función "predecir"
             // abre ese fichero "resultados.txt", y lo lee línea a línea, almacenando esos resultados en el array
-            // "datosPrediccion" que será el que se recorra para enviar cada uno de esos elementos a la vista ""
+            // "datosPrediccion" que será el que se recorra para enviar cada uno de esos elementos a la vista
             // redirigiendo este @PostMapping "/pacientes/modelo/guardar" al @GetMapping "/pacientes/modelo/Resultado"
             // que abrirá la vista "ResultadoPrediccion.html", a la que se le pasará el array "datosPrediccion"
             // para que muestre por pantalla los resultados generados en Python.
@@ -59,7 +59,7 @@ public class ModeloController {
             String rutaRecursos = "src/main/python/recursos";//Ruta del archivo CSV
             FileWriter fileWriter = new FileWriter(
                     Paths
-                        .get(rutaRecursos+"/datosPaciente.csv")
+                        .get(rutaRecursos+"/datosPaciente_X.csv")
                         .toString()
             );
 
@@ -141,7 +141,6 @@ public class ModeloController {
         //ejecutando la función "predecir".
 
         //Árbol de decisión
-        System.out.println(datosPrediccion.get(3));
         if (datosPrediccion.get(3).equals("[0]")) {
             model.addAttribute("arbol_prediccion", "Bajo"); //Valor predecido
         } else {
@@ -155,7 +154,6 @@ public class ModeloController {
 
 
         //Regresión logística
-        System.out.println(datosPrediccion.get(9));
         if (datosPrediccion.get(9).equals("[0]")) {
             model.addAttribute("rl_prediccion", "Bajo"); //Valor predecido
         } else {
@@ -169,7 +167,6 @@ public class ModeloController {
 
 
         //K-Nearest Neighbours
-        System.out.println(datosPrediccion.get(15));
         if (datosPrediccion.get(15).equals("[0]")) {
             model.addAttribute("kn_prediccion", "Bajo"); //Valor predecido
         } else {
@@ -183,7 +180,6 @@ public class ModeloController {
 
 
         //Gaussian Naïve Bayes Algorithm
-        System.out.println(datosPrediccion.get(21));
         if (datosPrediccion.get(21).equals("[0]")) {
             model.addAttribute("nb_prediccion", "Bajo"); //Valor predecido
         } else {
@@ -197,7 +193,6 @@ public class ModeloController {
 
 
         //Random Forest Algorithm
-        System.out.println(datosPrediccion.get(27));
         if (datosPrediccion.get(27).equals("[0]")) {
             model.addAttribute("rf_prediccion", "Bajo"); //Valor predecido
         } else {

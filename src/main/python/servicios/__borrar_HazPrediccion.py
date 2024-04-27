@@ -1,36 +1,21 @@
-﻿#! /usr/bin/env python3
+#! /usr/bin/env python3
 import numpy as np
 import pandas as pd
 
 #########################Funciones Auxiliares de preparación de datos #####################################
-def preparaDatosY(df):
-    df['Class'] = df['Class'].where(
-        ((df['Class']=='no-recurrence-events') |
-         (df['Class']=='recurrence-events'))
-        , other=1000
-    )
-    df.loc[df['Class']=='no-recurrence-events', 'Class'] = 0
-    df.loc[df['Class']=='recurrence-events', 'Class'] = 1
-
-
-    df['Class']= df['Class'].astype('int32', copy=False)
-
-    return(df)
-
-
-
-
 def preparaDatosX(df):
+    pd.set_option("future.no_silent_downcasting", True)
+
     df['age'] = df['age'].where(
         ((df['age']=='10-19') |
-        (df['age']=='20-29') |
-        (df['age']=='30-39') |
-        (df['age']=='40-49') |
-        (df['age']=='50-59') |
-        (df['age']=='60-69') |
-        (df['age']=='70-79') |
-        (df['age']=='80-89') |
-        (df['age']=='90-99'))
+         (df['age']=='20-29') |
+         (df['age']=='30-39') |
+         (df['age']=='40-49') |
+         (df['age']=='50-59') |
+         (df['age']=='60-69') |
+         (df['age']=='70-79') |
+         (df['age']=='80-89') |
+         (df['age']=='90-99'))
         , other=1000
     )
     df.loc[df['age']=='10-19', 'age'] = 19
@@ -42,33 +27,33 @@ def preparaDatosX(df):
     df.loc[df['age']=='70-79', 'age'] = 79
     df.loc[df['age']=='80-89', 'age'] = 89
     df.loc[df['age']=='90-99', 'age'] = 99
-    
+
 
 
     df['menopause'] = df['menopause'].where(
         ((df['menopause']=='lt40') |
-        (df['menopause']=='ge40') |
-        (df['menopause']=='premeno'))
+         (df['menopause']=='ge40') |
+         (df['menopause']=='premeno'))
         , other=1000
     )
     df.loc[df['menopause']=='lt40', 'menopause'] = 1
     df.loc[df['menopause']=='ge40', 'menopause'] = 2
     df.loc[df['menopause']=='premeno', 'menopause'] = 3
-    
+
 
     df['tumor-size'] = df['tumor-size'].where(
         ((df['tumor-size']=='0-4') |
-        (df['tumor-size']=='5-9') |
-        (df['tumor-size']=='10-14') |
-        (df['tumor-size']=='15-19') |
-        (df['tumor-size']=='20-24') |
-        (df['tumor-size']=='25-29') |
-        (df['tumor-size']=='30-34') |
-        (df['tumor-size']=='35-39') |
-        (df['tumor-size']=='40-44') |
-        (df['tumor-size']=='45-49') |
-        (df['tumor-size']=='50-54') |
-        (df['tumor-size']=='55-59'))
+         (df['tumor-size']=='5-9') |
+         (df['tumor-size']=='10-14') |
+         (df['tumor-size']=='15-19') |
+         (df['tumor-size']=='20-24') |
+         (df['tumor-size']=='25-29') |
+         (df['tumor-size']=='30-34') |
+         (df['tumor-size']=='35-39') |
+         (df['tumor-size']=='40-44') |
+         (df['tumor-size']=='45-49') |
+         (df['tumor-size']=='50-54') |
+         (df['tumor-size']=='55-59'))
         , other=1000
     )
     df.loc[df['tumor-size']=='0-4', 'tumor-size'] = 4
@@ -83,21 +68,21 @@ def preparaDatosX(df):
     df.loc[df['tumor-size']=='45-49', 'tumor-size'] = 49
     df.loc[df['tumor-size']=='50-54', 'tumor-size'] = 54
     df.loc[df['tumor-size']=='55-59', 'tumor-size'] = 59
-    
+
 
     df['inv-nodes'] = df['inv-nodes'].where(
         ((df['inv-nodes']=='0-2') |
-        (df['inv-nodes']=='3-5') |
-        (df['inv-nodes']=='6-8') |
-        (df['inv-nodes']=='9-11') |
-        (df['inv-nodes']=='12-14') |
-        (df['inv-nodes']=='15-17') |
-        (df['inv-nodes']=='18-20') |
-        (df['inv-nodes']=='21-23') |
-        (df['inv-nodes']=='24-26') |
-        (df['inv-nodes']=='27-29') |
-        (df['inv-nodes']=='30-32') |
-        (df['inv-nodes']=='36-39'))
+         (df['inv-nodes']=='3-5') |
+         (df['inv-nodes']=='6-8') |
+         (df['inv-nodes']=='9-11') |
+         (df['inv-nodes']=='12-14') |
+         (df['inv-nodes']=='15-17') |
+         (df['inv-nodes']=='18-20') |
+         (df['inv-nodes']=='21-23') |
+         (df['inv-nodes']=='24-26') |
+         (df['inv-nodes']=='27-29') |
+         (df['inv-nodes']=='30-32') |
+         (df['inv-nodes']=='36-39'))
         , other=1000
     )
     df.loc[df['inv-nodes']=='0-2', 'inv-nodes'] = 2
@@ -113,42 +98,42 @@ def preparaDatosX(df):
     df.loc[df['inv-nodes']=='30-32', 'inv-nodes'] = 32
     df.loc[df['inv-nodes']=='36-39', 'inv-nodes'] = 39
 
-    
-   
+
+
     df['node-caps'] = df['node-caps'].where(
         ((df['node-caps']=='no') |
-        (df['node-caps']=='yes'))
+         (df['node-caps']=='yes'))
         , other=1000
     )
     df.loc[df['node-caps']=='no', 'node-caps'] = 0
     df.loc[df['node-caps']=='yes', 'node-caps'] = 1
-    
+
 
     df['deg-malig'] = df['deg-malig'].where(
         ((df['deg-malig']==1) |
-        (df['deg-malig']==2) |
-        (df['deg-malig']==3))
+         (df['deg-malig']==2) |
+         (df['deg-malig']==3))
         , other=1000
     )
     df.loc[df['deg-malig']=='1', 'deg-malig'] = 1
     df.loc[df['deg-malig']=='2', 'deg-malig'] = 2
     df.loc[df['deg-malig']=='3', 'deg-malig'] = 3
-    
+
 
     df['breast'] = df['breast'].where(
         ((df['breast']=='left') |
-        (df['breast']=='right'))
+         (df['breast']=='right'))
         , other=1000
     )
     df.loc[df['breast']=='left', 'breast'] = 0
     df.loc[df['breast']=='right', 'breast'] = 1
-    
+
     df['breast-quad'] = df['breast-quad'].where(
         ((df['breast-quad']=='left_up') |
-        (df['breast-quad']=='left_low') |
-        (df['breast-quad']=='right_up') |
-        (df['breast-quad']=='right_low') |
-        (df['breast-quad']=='central'))
+         (df['breast-quad']=='left_low') |
+         (df['breast-quad']=='right_up') |
+         (df['breast-quad']=='right_low') |
+         (df['breast-quad']=='central'))
         , other=1000
     )
     df.loc[df['breast-quad']=='left_up', 'breast-quad'] = 1
@@ -156,18 +141,18 @@ def preparaDatosX(df):
     df.loc[df['breast-quad']=='right_up', 'breast-quad'] = 3
     df.loc[df['breast-quad']=='right_low', 'breast-quad'] = 4
     df.loc[df['breast-quad']=='central', 'breast-quad'] = 5
-    
+
     df['irradiat'] = df['irradiat'].where(
         ((df['irradiat']=='no') |
-        (df['irradiat']=='yes'))
+         (df['irradiat']=='yes'))
         , other=1000
     )
     df.loc[df['irradiat']=='no', 'irradiat'] = 0
     df.loc[df['irradiat']=='yes', 'irradiat'] = 1
 
-   
 
-    ###Cambio del tipo de dato de las columnas a valores enteros 
+
+    ###Cambio del tipo de dato de las columnas a valores enteros
     df['age'] = df['age'].astype('int32', copy=False)
     df['menopause'] = df['menopause'].astype('int32', copy=False)
     df['tumor-size'] = df['tumor-size'].astype('int32', copy=False)
@@ -177,47 +162,49 @@ def preparaDatosX(df):
     df['breast'] = df['breast'].astype('int32', copy=False)
     df['breast-quad'] = df['breast-quad'].astype('int32', copy=False)
     df['irradiat'] = df['irradiat'].astype('int32', copy=False)
-    
+
 
     df = df.infer_objects(copy=False)
     return df
 
-##############FIN PREPARACIÓN DE LOS DATOS##################################################### 
+def preparaDatosY(df):
+    pd.set_option("future.no_silent_downcasting", True)
+
+    df['Class'] = df['Class'].where(
+        ((df['Class']=='no-recurrence-events') |
+         (df['Class']=='recurrence-events'))
+        , other=1000
+    )
+    df.loc[df['Class']=='no-recurrence-events', 'Class'] = 0
+    df.loc[df['Class']=='recurrence-events', 'Class'] = 1
+
+    df['Class']= df['Class'].astype('int32', copy=False)
+
+    df = df.infer_objects(copy=False)
+    return df
+##############FIN PREPARACIÓN DE LOS DATOS#####################################################
 
 
 
 
 
 ##########################CARGA DE DATOS#################################
-import os
-directorio_actual = os.path.dirname(os.path.realpath(__file__))
-
-#datos = pd.read_csv('../recursos/breast-cancer.csv', sep=',', encoding='ISO-8859 -1')
-fichero_breast_cancer = os.path.join(directorio_actual, "../recursos/breast-cancer.csv")
-datos = pd.read_csv(fichero_breast_cancer, sep=',')
-df = pd.DataFrame(datos)
-
-#Eliminación de duplicados
-duplicados = df[
-    df[
-        ['Class', 'age', 'menopause', 'tumor-size', 'inv-nodes', 'node-caps',
-         'deg-malig', 'breast', 'breast-quad', 'irradiat']
-    ].duplicated(keep=False)
-][
-    ['Class', 'age', 'menopause', 'tumor-size', 'inv-nodes', 'node-caps',
-     'deg-malig', 'breast', 'breast-quad', 'irradiat']
-]
-
-df = df.drop_duplicates(subset = duplicados)
+#Carga de datos de entrenamiento del dataset de ucirepo
+from ucimlrepo import fetch_ucirepo
+dataset = fetch_ucirepo(id=14) #Breast Cancer: dataset id=14
+dataFrameX_train = dataset.data.features #Datos
+dataFramey_train = dataset.data.targets #Clasificación
 
 
-X_train = preparaDatosX(df[['age','menopause','tumor-size','inv-nodes','node-caps','deg-malig','breast','breast-quad','irradiat']].copy())
-y_train = preparaDatosY(df[['Class']].copy())
-
-
+X_train_ = pd.DataFrame(data=dataFrameX_train)
+X_train = preparaDatosX(X_train_)
+y_train_ = pd.DataFrame(data=dataFramey_train)
+y_train = preparaDatosY(y_train_)
 
 
 #Carga de datos del formulario
+import os
+directorio_actual = os.path.dirname(os.path.realpath(__file__))
 fichero_X_test = os.path.join(directorio_actual, "../recursos/datosPaciente_X.csv")
 dataFrameX_test = pd.read_csv(fichero_X_test) #Datos prueba
 
@@ -226,11 +213,12 @@ X_test = preparaDatosX(X_test_)
 
 
 
+
 ######################## 1. CONSTRUCCIÓN DE LOS MODELOS#######################
 
 ################## MODELO_1.- Árbol de decisión
 from sklearn import tree
-decision_tree_Model = tree.DecisionTreeClassifier(criterion='entropy', 
+decision_tree_Model = tree.DecisionTreeClassifier(criterion='entropy',
                                                   max_leaf_nodes=19,
                                                   random_state=0,
                                                   min_samples_split=20,
@@ -242,20 +230,20 @@ decision_tree_fit = decision_tree_Model.fit(X_train, y_train)
 
 ################## MODELO_2.- Regresión Logística
 from sklearn.linear_model import LogisticRegression
-LR_Model = LogisticRegression(C=1.0, 
-                        class_weight=None, 
-                        dual=False, 
-                        fit_intercept=True,
-                        intercept_scaling=1, 
-                        max_iter=100, 
-                        multi_class='ovr',
-                        n_jobs=1,
-                        penalty='l2', 
-                        random_state=None, 
-                        solver='liblinear', 
-                        tol=0.0001,
-                        verbose=0, 
-                        warm_start=False)
+LR_Model = LogisticRegression(C=1.0,
+                              class_weight=None,
+                              dual=False,
+                              fit_intercept=True,
+                              intercept_scaling=1,
+                              max_iter=100,
+                              multi_class='ovr',
+                              n_jobs=1,
+                              penalty='l2',
+                              random_state=None,
+                              solver='liblinear',
+                              tol=0.0001,
+                              verbose=0,
+                              warm_start=False)
 LogRegr_fit = LR_Model.fit(X_train, np.ravel(y_train))
 
 
