@@ -35,17 +35,17 @@ public class ModeloController {
 
             // El usuario habrá configurado los parámetros de su tumor anterior a través del formulario
             // "NuevoModeloForm". Todos estos valores se recogerán y se almacenarán en el fichero
-            // "datosPaciente.csv" (si no existe, lo crea), que se ubicará en la ruta "src/main/python/recursos/".
+            // "datosPaciente_X.csv" (al abrirlo, vacía su contenido), que se ubicará en la ruta "src/main/python/recursos/".
             // El programa python "HazPrediccion.py" tomará ese fichero y lo usará para predecir el resultado y
             // las medidas de calidad de los diferentes modelos de Machine learning que haya usado
-            //  (árbol de decisión, K-Neibourght, Naive-Bayes, RandonForest, etc).
+            // (árbol de decisión, K-Neibourght, Naive-Bayes, RandonForest, etc).
 
             // La función "EjecutaPython", del service llamado "modeloService", ejecutará el programa python
             // "HazPrediccion.py" (nombre de fichero que se pasará como parámetro),
             // El programa python creará los modelos de Machine Learning entrenándolos con los datos del dataset
-            // "Breast Cancer" (repositorio "ucirepo"), que almacenará en el fichero "datosPaciente_X.csv". Una vez
+            // "Breast Cancer" guardados en el fichero "breast-cancer.csv". Una vez
             // creados y entrenados los modelos mencionados, tomará los datos de este formulario, que se han
-            // almacenado en el fichero "datosPaciente.csv" y hará la predicción correspondiente. El resultado de esa
+            // almacenado en el fichero "datosPaciente_X.csv" y hará la predicción correspondiente. El resultado de esa
             // predicción la almacena en el fichero "resultados.txt". Este service, a través de esta función "predecir"
             // abre ese fichero "resultados.txt", y lo lee línea a línea, almacenando esos resultados en el array
             // "datosPrediccion" que será el que se recorra para enviar cada uno de esos elementos a la vista
@@ -54,7 +54,7 @@ public class ModeloController {
             // para que muestre por pantalla los resultados generados en Python.
 
 
-            // Creación, si no existe, y apertura del fichero "datosPaciente.csv" en donde se van a guardar los datos
+            // Creación, si no existe, y apertura del fichero "datosPaciente_X.csv" en donde se van a guardar los datos
             // de este formulario
             String rutaRecursos = "src/main/python/recursos";//Ruta del archivo CSV
             FileWriter fileWriter = new FileWriter(
@@ -92,8 +92,8 @@ public class ModeloController {
                     }
             );
 
-            //Escritura de los datos del formulario en el fichero "datosPaciente.csv", que se habrá creado si
-            // éste aún no estaba creado en el sistema contenedor.
+            //Escritura de los datos del formulario en el fichero "datosPaciente_X.csv", que se habrá creado si
+            // éste aún no estaba creado en el sistema contenedor. Lo abre vaciendo por completo su contenido
             CSVPrinter csvPrinter = new CSVPrinter(fileWriter,CSVFormat.DEFAULT);
             csvPrinter.printRecords(listaModelo);
             csvPrinter.close();
@@ -141,68 +141,63 @@ public class ModeloController {
         //ejecutando la función "predecir".
 
         //Árbol de decisión
-        if (datosPrediccion.get(3).equals("[0]")) {
-            model.addAttribute("arbol_prediccion", "Bajo"); //Valor predecido
+        if (datosPrediccion.get(0).equals("[0]")) {
+            model.addAttribute("ad_prediccion", "Bajo"); //Valor predecido
         } else {
-            model.addAttribute("arbol_prediccion", "Alto"); //Valor predecido
+            model.addAttribute("ad_prediccion", "Alto"); //Valor predecido
         }
-        model.addAttribute("arbol_media", datosPrediccion.get(0)); //Media de los resultados del modelo
-        model.addAttribute("arbol_sdt", datosPrediccion.get(1)); //Desviación típica de los resultados del modelo
-        model.addAttribute("arbol_precision", datosPrediccion.get(2)); //Precisión del modelo
-        model.addAttribute("arbol_probacierto", datosPrediccion.get(4)); //Probabilidad de acierto
-        model.addAttribute("arbol_precisionmedia", datosPrediccion.get(5)); //Precisión media de los datos
+        model.addAttribute("ad_exactitud", datosPrediccion.get(1)); //Exactitud
+        model.addAttribute("ad_sensibilidad", datosPrediccion.get(2)); //Sensibilidad
+        model.addAttribute("ad_precision", datosPrediccion.get(3)); //Precisión
+        model.addAttribute("ad_especificidad", datosPrediccion.get(4)); //Especificidad
 
 
         //Regresión logística
-        if (datosPrediccion.get(9).equals("[0]")) {
+        if (datosPrediccion.get(5).equals("[0]")) {
             model.addAttribute("rl_prediccion", "Bajo"); //Valor predecido
         } else {
             model.addAttribute("rl_prediccion", "Alto"); //Valor predecido
         }
-        model.addAttribute("rl_media", datosPrediccion.get(6)); //Media de los resultados del modelo
-        model.addAttribute("rl_sdt", datosPrediccion.get(7)); //Desviación típica de los resultados del modelo
-        model.addAttribute("rl_precision", datosPrediccion.get(8)); //Precisión del modelo
-        model.addAttribute("rl_probacierto", datosPrediccion.get(10)); //Probabilidad de acierto
-        model.addAttribute("rl_precisionmedia", datosPrediccion.get(11)); //Precisión media de los datos
+        model.addAttribute("rl_exactitud", datosPrediccion.get(6)); //Exactitud
+        model.addAttribute("rl_sensibilidad", datosPrediccion.get(7)); //Sensibilidad
+        model.addAttribute("rl_precision", datosPrediccion.get(8)); //Precisión
+        model.addAttribute("rl_especificidad", datosPrediccion.get(9)); //Especificidad
 
 
         //K-Nearest Neighbours
-        if (datosPrediccion.get(15).equals("[0]")) {
+        if (datosPrediccion.get(10).equals("[0]")) {
             model.addAttribute("kn_prediccion", "Bajo"); //Valor predecido
         } else {
             model.addAttribute("kn_prediccion", "Alto"); //Valor predecido
         }
-        model.addAttribute("kn_media", datosPrediccion.get(12)); //Media de los resultados del modelo
-        model.addAttribute("kn_sdt", datosPrediccion.get(13)); //Desviación típica de los resultados del modelo
-        model.addAttribute("kn_precision", datosPrediccion.get(14)); //Precisión del modelo
-        model.addAttribute("kn_probacierto", datosPrediccion.get(16)); //Probabilidad de acierto
-        model.addAttribute("kn_precisionmedia", datosPrediccion.get(17)); //Precisión media de los datos
+        model.addAttribute("kn_exactitud", datosPrediccion.get(11)); //Exactitud
+        model.addAttribute("kn_sensibilidad", datosPrediccion.get(12)); //Sensibilidad
+        model.addAttribute("kn_precision", datosPrediccion.get(13)); //Precisión
+        model.addAttribute("kn_especificidad", datosPrediccion.get(14)); //Especificidad
 
 
         //Gaussian Naïve Bayes Algorithm
-        if (datosPrediccion.get(21).equals("[0]")) {
+        if (datosPrediccion.get(15).equals("[0]")) {
             model.addAttribute("nb_prediccion", "Bajo"); //Valor predecido
         } else {
             model.addAttribute("nb_prediccion", "Alto"); //Valor predecido
         }
-        model.addAttribute("nb_media", datosPrediccion.get(18)); //Media de los resultados del modelo
-        model.addAttribute("nb_sdt", datosPrediccion.get(19)); //Desviación típica de los resultados del modelo
-        model.addAttribute("nb_precision", datosPrediccion.get(20)); //Precisión del modelo
-        model.addAttribute("nb_probacierto", datosPrediccion.get(22)); //Probabilidad de acierto
-        model.addAttribute("nb_precisionmedia", datosPrediccion.get(23)); //Precisión media de los datos
+        model.addAttribute("nb_exactitud", datosPrediccion.get(16)); //Exactitud
+        model.addAttribute("nb_sensibilidad", datosPrediccion.get(17)); //Sensibilidad
+        model.addAttribute("nb_precision", datosPrediccion.get(18)); //Precisión
+        model.addAttribute("nb_especificidad", datosPrediccion.get(19)); //Especificidad
 
 
         //Random Forest Algorithm
-        if (datosPrediccion.get(27).equals("[0]")) {
+        if (datosPrediccion.get(20).equals("[0]")) {
             model.addAttribute("rf_prediccion", "Bajo"); //Valor predecido
         } else {
             model.addAttribute("rf_prediccion", "Alto"); //Valor predecido
         }
-        model.addAttribute("rf_media", datosPrediccion.get(24)); //Media de los resultados del modelo
-        model.addAttribute("rf_sdt", datosPrediccion.get(25)); //Desviación típica de los resultados del modelo
-        model.addAttribute("rf_precision", datosPrediccion.get(26)); //Precisión del modelo
-        model.addAttribute("rf_probacierto", datosPrediccion.get(28)); //Probabilidad de acierto
-        model.addAttribute("rf_precisionmedia", datosPrediccion.get(29)); //Precisión media de los datos
+        model.addAttribute("rf_exactitud", datosPrediccion.get(21)); //Exactitud
+        model.addAttribute("rf_sensibilidad", datosPrediccion.get(22)); //Sensibilidad
+        model.addAttribute("rf_precision", datosPrediccion.get(23)); //Precisión
+        model.addAttribute("rf_especificidad", datosPrediccion.get(24)); //Especificidad
 
 
         return "ResultadoPrediccion";

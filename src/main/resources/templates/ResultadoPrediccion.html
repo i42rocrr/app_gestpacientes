@@ -42,61 +42,52 @@
         <tbody>
 
             <tr>
-
                 <td  class="table-info">Riesgo de recaída</td>
-                <td th:text="${arbol_prediccion}"></td>
+                <td th:text="${ad_prediccion}"></td>
                 <td th:text="${rl_prediccion}"></td>
                 <td th:text="${kn_prediccion}"></td>
                 <td th:text="${nb_prediccion}"></td>
                 <td th:text="${rf_prediccion}"></td>
             </tr>
 
+            <tr></tr>
+
             <tr>
-                <td  class="table-info">Probabilidad de acierto</td>
-                <td th:text="${arbol_probacierto}"></td>
-                <td th:text="${rl_probacierto}"></td>
-                <td th:text="${kn_probacierto}"></td>
-                <td th:text="${nb_probacierto}"></td>
-                <td th:text="${rf_probacierto}"></td>
+                <td  class="table-info">Exactitud del modelo</td>
+                <td th:text="${ad_exactitud}"></td>
+                <td th:text="${rl_exactitud}"></td>
+                <td th:text="${kn_exactitud}"></td>
+                <td th:text="${nb_exactitud}"></td>
+                <td th:text="${rf_exactitud}"></td>
             </tr>
 
             <tr>
-                <td  class="table-info">Precisión</td>
-                <td th:text="${arbol_precision}"></td>
+                <td  class="table-info">Sensibilidad del modelo</td>
+                <td th:text="${ad_sensibilidad}"></td>
+                <td th:text="${rl_sensibilidad}"></td>
+                <td th:text="${kn_sensibilidad}"></td>
+                <td th:text="${nb_sensibilidad}"></td>
+                <td th:text="${rf_sensibilidad}"></td>
+            </tr>
+
+
+            <tr>
+                <td  class="table-info">Precisión del modelo</td>
+                <td th:text="${ad_precision}"></td>
                 <td th:text="${rl_precision}"></td>
                 <td th:text="${kn_precision}"></td>
                 <td th:text="${nb_precision}"></td>
                 <td th:text="${rf_precision}"></td>
             </tr>
 
-
             <tr>
-                <td  class="table-info">Precisión media de los datos</td>
-                <td th:text="${arbol_precisionmedia}"></td>
-                <td th:text="${rl_precisionmedia}"></td>
-                <td th:text="${kn_precisionmedia}"></td>
-                <td th:text="${nb_precisionmedia}"></td>
-                <td th:text="${rf_precisionmedia}"></td>
+                <td  class="table-info">Especificidad del modelo</td>
+                <td th:text="${ad_especificidad}"></td>
+                <td th:text="${rl_especificidad}"></td>
+                <td th:text="${kn_especificidad}"></td>
+                <td th:text="${nb_especificidad}"></td>
+                <td th:text="${rf_especificidad}"></td>
             </tr>
-
-            <tr>
-                <td  class="table-info">Media</td>
-                <td th:text="${arbol_media}"></td>
-                <td th:text="${rl_media}"></td>
-                <td th:text="${kn_media}"></td>
-                <td th:text="${nb_media}"></td>
-                <td th:text="${rf_media}"></td>
-            </tr>
-
-            <tr>
-                <td  class="table-info">Desviación típica</td>
-                <td th:text="${arbol_sdt}"></td>
-                <td th:text="${rl_sdt}"></td>
-                <td th:text="${kn_sdt}"></td>
-                <td th:text="${nb_sdt}"></td>
-                <td th:text="${rf_sdt}"></td>
-            </tr>
-
 
 
         </tbody>

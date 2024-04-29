@@ -86,7 +86,6 @@ RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/pip install matplotlib
 RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/pip install Pyarrow
 RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/pip install scipy
 RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/pip install scikit-learn
-#RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/pip install ucimlrepo
 RUN /root/.pyenv/versions/${PYTHONVERSION}/bin/pip install certifi
 ########### Fin instalación de paquetes de python en el systema
 
